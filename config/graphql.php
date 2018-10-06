@@ -76,7 +76,8 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'users' => 'App\GraphQL\Query\UsersQuery'
+                'users' => 'App\GraphQL\Query\UsersQuery',
+                'usersPagination' => 'App\GraphQL\Query\UsersPaginationQuery'
             ],
             'mutation' => [
                 'createUser' => 'App\GraphQL\Mutation\CreateUserMutation',
