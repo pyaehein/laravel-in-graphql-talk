@@ -38,4 +38,9 @@ class UserType extends GraphQLType
             ]
         ];
     }
+
+    protected function resolveNameField($root, $args)
+    {
+        return strtolower($root->name);
+    }
 }
