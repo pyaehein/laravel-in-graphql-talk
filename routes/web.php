@@ -12,5 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $users = \App\User::query();
+    dd(\Illuminate\Support\Facades\Schema::getColumnListing($users->getTable()));
 });

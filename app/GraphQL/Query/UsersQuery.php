@@ -7,6 +7,7 @@ use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use App\User;
 use GraphQL\Type\Definition\ResolveInfo;
+use Illuminate\Support\Facades\Schema;
 
 class UsersQuery extends Query
 {
@@ -42,6 +43,11 @@ class UsersQuery extends Query
             if ($field === 'posts') {
                 $users->with('posts');
             }
+        }
+
+        $tableFields = Schema::getColumnListing((new User())->getTable());
+        foreach ($args as $key => $field) {
+            if (in_array($key, $tableFields)) $users = $users->where($key, $args[$key]);
         }
 
         return $users->get();
