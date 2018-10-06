@@ -33,6 +33,19 @@ class UserType extends GraphQLType
                 'description' => 'Posts of user'
             ],
             'comments' => [
+                'args' => [
+                    'id' => [
+                        'type' => Type::string(),
+                        'description' => 'The id of comment'
+                    ]
+                ],
+                'resolve' => function($root, $args) {
+                    $comment = $root->comments();
+                    if (isset($args['id'])) {
+                        $comment = $comment->where('id', $args['id']);
+                    }
+                    return $comment->get();
+                },
                 'type' => Type::listOf(GraphQL::type('Comment')),
                 'description' => 'Comments of user'
             ]
