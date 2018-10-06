@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Type;
 
+use Carbon\Carbon;
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
@@ -48,6 +49,14 @@ class UserType extends GraphQLType
                 },
                 'type' => Type::listOf(GraphQL::type('Comment')),
                 'description' => 'Comments of user'
+            ],
+            'created_at' => [
+                'type' => Type::string(),
+                'description' => 'The created at of user'
+            ],
+            'updated_at' => [
+                'type' => Type::string(),
+                'description' => 'The updated at of user'
             ]
         ];
     }
@@ -55,5 +64,15 @@ class UserType extends GraphQLType
     protected function resolveNameField($root, $args)
     {
         return strtolower($root->name);
+    }
+
+    protected function resolveCreatedAtField($root, $args)
+    {
+        return (String) $root->updated_at;
+    }
+
+    protected function resolveUpdatedAtField($root, $args)
+    {
+        return (String) $root->updated_at;
     }
 }

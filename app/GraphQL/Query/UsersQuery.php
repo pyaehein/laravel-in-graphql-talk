@@ -25,7 +25,8 @@ class UsersQuery extends Query
         return [
             'id' => ['name' => 'id', 'type' => Type::string()],
             'name' => ['name' => 'name', 'type' => Type::string()],
-            'email' => ['name' => 'email', 'type' => Type::string()]
+            'email' => ['name' => 'email', 'type' => Type::string()],
+            'updated_at' => ['name' => 'updated_at', 'type' => Type::string()]
         ];
     }
 
