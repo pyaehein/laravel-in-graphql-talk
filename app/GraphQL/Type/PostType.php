@@ -36,6 +36,10 @@ class PostType extends GraphQLType
                 'type' => GraphQL::type('User'),
                 'description' => 'The user of post'
             ],
+            'comments' => [
+                'type' => Type::listOf(GraphQL::type('Comment')),
+                'description' => 'Comments of post'
+            ]
         ];
     }
 }
